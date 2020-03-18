@@ -2,7 +2,7 @@
   "name": "js-starter",
   "version": "1.0.0",
   "main": "build/index.js",
-  "typings": "build/index",
+  "typings": "src/js/lib/index",
   "repository": "git@github.com:MeuhMeuhConcept/js-starter.git",
   "author": "jngermon <jn.germon@gmail.com>",
   "license": "MIT",
