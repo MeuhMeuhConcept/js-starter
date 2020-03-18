@@ -1,0 +1,29 @@
+version: "3"
+services:
+    appserver:
+        container_name: js-starter_appserver
+        image: meuhmeuhconcept/php:2.3
+        working_dir: /srv
+        volumes:
+            - .:/srv
+            - ./docker/.home-developer:/home/developer
+        environment:
+            - USERNAME
+            - UNIX_UID
+            - CONTAINER_SHELL
+            - NODE_ENV
+        command: 'tail -f /srv/README.md'
+        restart: always
+
+    webserver:
+        image: nginx:stable-alpine
+        container_name: js-starter_webserver
+        volumes:
+            - .:/srv
+            - ./docker/conf/nginx_vhost.conf:/etc/nginx/conf.d/default.conf
+        links:
+            - appserver
+        environment:
+            - DNSDOCK_IMAGE=web
+            - DNSDOCK_NAME
+        restart: always
