@@ -6,7 +6,6 @@ class ResourcesLoader {
         this._elementInDom = false;
         this._errorShown = false;
         this.errorMessage = null;
-        console.log('tintin');
         this._loader = new loader_1.MultiResourceLoader();
         this._loader.onUpdate((l) => {
             this.show();
