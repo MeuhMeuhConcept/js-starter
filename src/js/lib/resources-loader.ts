@@ -11,7 +11,6 @@ export default class ResourcesLoader {
     public errorMessage: string | null = null
 
     constructor () {
-        console.log('tintin')
         this._loader = new MultiResourceLoader()
 
         this._loader.onUpdate((l: ResourceLoader) => {
