@@ -2,11 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const loader_1 = require("./loader");
 class ResourcesLoader {
-    constructor() {
+    constructor(contentId) {
         this._elementInDom = false;
         this._errorShown = false;
         this.errorMessage = null;
         this._loader = new loader_1.MultiResourceLoader();
+        if (contentId) {
+            this._contentElement = document.getElementById(contentId);
+        }
         this._loader.onUpdate((l) => {
             this.show();
             if (l.status === 'done') {
@@ -54,12 +57,18 @@ class ResourcesLoader {
         if (this._elementInDom) {
             return;
         }
+        if (this._contentElement) {
+            this._contentElement.setAttribute('style', 'display: none');
+        }
         document.body.appendChild(this._element);
         this._elementInDom = true;
     }
     hide() {
         if (!this._elementInDom) {
             return;
+        }
+        if (this._contentElement) {
+            this._contentElement.removeAttribute('style');
         }
         document.body.removeChild(this._element);
         this._elementInDom = false;

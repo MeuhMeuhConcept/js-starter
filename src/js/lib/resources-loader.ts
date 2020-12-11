@@ -4,14 +4,19 @@ export default class ResourcesLoader {
 
     private _loader: MultiResourceLoader
     private _element: Element
+    private _contentElement?: Element
     private _progressBarElement: Element
     private _elementInDom: boolean = false
     private _errorShown: boolean = false
 
     public errorMessage: string | null = null
 
-    constructor () {
+    constructor (contentId?: string) {
         this._loader = new MultiResourceLoader()
+
+        if (contentId) {
+            this._contentElement = document.getElementById(contentId) as Element
+        }
 
         this._loader.onUpdate((l: ResourceLoader) => {
             this.show()
@@ -68,6 +73,10 @@ export default class ResourcesLoader {
             return
         }
 
+        if (this._contentElement) {
+            this._contentElement.setAttribute('style', 'display: none')
+        }
+
         document.body.appendChild(this._element)
         this._elementInDom = true
     }
@@ -75,6 +84,10 @@ export default class ResourcesLoader {
     hide () {
         if (!this._elementInDom) {
             return
+        }
+
+        if (this._contentElement) {
+            this._contentElement.removeAttribute('style')
         }
 
         document.body.removeChild(this._element)

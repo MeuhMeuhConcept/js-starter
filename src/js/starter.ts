@@ -8,6 +8,6 @@ declare global {
     }
 }
 
-const resourcesLoader = new ResourcesLoader()
+const resourcesLoader = new ResourcesLoader('app')
 resourcesLoader.errorMessage = 'Oups...'
 resourcesLoader.addResources(window.__ENV__.resources)
