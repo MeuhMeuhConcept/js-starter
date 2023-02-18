@@ -1,6 +1,8 @@
 # js-starter
 Extra light lib to load content
 
+Obsolete : use code-202/js-starter instead
+
 ## Installation
 
 Install package with that command
